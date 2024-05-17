@@ -1,19 +1,33 @@
 const mongoose = require("mongoose");
-const userSchema = mongoose.Schema({
+const Schema = mongoose.Schema;
+
+const userSchema = new Schema({
     username: {
-        type: String,
+      type: String,
+      required: [true, "Username is required"],
+      unique: [true, "Username is unique"],
     },
     fullname: {
-        type: String,
+      type: String,
+      require: true,
     },
     role: {
-        type: String,
+      type: String,
+      require: true,
     },
-    project: [String],
+    project: {
+      type: [String],
+      default: [],
+    },
     activeYn: {
-        type: Boolean,
+      type: String,
+      enum: {
+        values: ["Y", "N"],
+        message: "Value must is Y or N",
+      },
+      default: "Y",
     },
-});
+  });
 
 const User = mongoose.model("User", userSchema);
 module.exports = User;
