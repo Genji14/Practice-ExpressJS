@@ -6,7 +6,6 @@ const mongoose = require('mongoose');
 const router = require("./routes/route");
 
 const app = express();
-router(app);
 
 // Dotenv Config
 dotenv.config();
@@ -18,6 +17,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // View Config
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
+
+// Route Config
+router(app);
 
 async function startServer() {
     try {
