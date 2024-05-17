@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: "Open Sans", sans-serif;
+        }
+    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        window.onload = function() {
+            document.getElementById('userForm').addEventListener('submit', function (event) {
+                event.preventDefault();
+    
+                const fullName = document.getElementById('fullName').value;
+                const username = document.getElementById('username').value;
+                const roleName = document.getElementById('roleName').value;
+    
+                const projects = Array.from(document.querySelectorAll('input[name="project"]:checked')).map(input => input.value);
+    
+                const user = {
+                    fullName,
+                    username,
+                    roleName,
+                    projects
+                };
+                
+                console.log(user);
+
+                fetch('/user/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(user),
+                })
+                    .then(response => response.json())
+                    .then(data => console.log(data))
+                    .catch((error) => console.error('Error:', error));
+            });
+        }
+    </script>
+</head>
+
+<body class="w-screen h-screen p-10">
+    <div class="flex flex-col w-full gap-2">
+        <h1 class="font-bold text-2xl text-center uppercase">User Management</h1>
+        <form id="userForm" class="space-y-4 my-4 flex flex-col items-center w-full">
+            <div class="space-y-1">
+                <h2 class="text-sm font-semibold">Họ tên</h2>
+                <input id="fullName" type="text" name="fullName" required
+                    class="border-2 border-gray-400 rounded px-3 py-2 w-[500px]" />
+            </div>
+            <div class="space-y-1">
+                <h2 class="text-sm font-semibold">Username</h2>
+                <input id="username" type="text" name="username" required
+                    class="border-2 border-gray-400 rounded px-3 py-2 w-[500px]" />
+            </div>
+            <div class="space-y-1">
+                <h2 class="text-sm font-semibold">Role name</h2>
+                <select id="roleName" name="role" required
+                    class="border-2 border-gray-400 rounded pl-3 py-2 pr-5 w-[500px]">
+                    <option value="">Select a role</option>
+                    <option value="developer">Developer</option>
+                    <option value="tester">Tester</option>
+                </select>
+            </div>
+            <div class="space-y-1  w-[500px]">
+                <h2 class="text-sm font-semibold">Project(s)</h2>
+                <div class="flex items-center gap-10">
+                    <div class="flex items-center gap-2">
+                        <input type="checkbox" id="d&d" name="project" value="d&d">
+                        <label for="d&d" class="text-sm">D&D</label>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <input type="checkbox" tiger="d&d" name="project" value="tiger">
+                        <label for="tiger" class="text-sm">Tiger</label>
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="text-white px-4 py-2 bg-green-600 hover:bg-green-800 rounded mt-4">Add User</button>
+        </form>
+    </div>
+</body>
+
+</html>
