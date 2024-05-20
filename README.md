@@ -9,10 +9,12 @@ Use Docker Compose's command:
     docker-compose -f docker-compose.yaml up -d
 ```
 
+The server is listen at port 5000
+
 ### Search Users - Method GET
 
 ```
-    localhost:3000/users/search
+    localhost:5000/users/search
 ```
 
 query: {
@@ -28,7 +30,7 @@ Success -> Status: 200
 ### Add User - Method POST
 
 ```
-    localhost:3000/users/add
+    localhost:5000/users/add
 ```
 
 body: {
@@ -46,7 +48,7 @@ Error -> Status: 400
 ### Edit User - Method PATCH
 
 ```
-    localhost:3000/users/:username
+    localhost:5000/users/:username
 ```
 
 param: username
@@ -67,7 +69,7 @@ Error -> Status: 400
 Delete User - Method DELETE
 
 ```
-    localhost:3000/users/:username
+    localhost:5000/users/:username
 ```
 
 param: username
