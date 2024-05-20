@@ -12,7 +12,7 @@ services:
       - mongo-data:/data/db
 
   express-app:
-    image: express-app
+    image: phatvo1411/docker-practice:latest
     ports:
       - 5000:3000
     environment:
