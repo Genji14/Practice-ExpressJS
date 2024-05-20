@@ -1,0 +1,24 @@
+version: '3.1'
+services:
+  mongo:
+    image: mongo
+    restart: always
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: admin
+    volumes:
+      - mongo-data:/data/db
+
+  express-app:
+    image: express-app
+    ports:
+      - 5000:3000
+    environment:
+      PORT: 3000
+      MONGO_DB_URI: mongodb://admin:admin@mongo:27017/?authMechanism=DEFAULT
+    depends_on:
+      - mongo
+volumes:
+  mongo-data:

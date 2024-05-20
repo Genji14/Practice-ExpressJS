@@ -2,6 +2,13 @@
 
 ## Features 
 
+### Run Application 
+Use Docker Compose's command: 
+
+```
+    docker-compose -f docker-compose.yaml up -d
+```
+
 ### Search Users - Method GET
 
 ```
@@ -67,3 +74,5 @@ param: username
 
 Success -> Status: 204
 Error -> Status: 400
+
+
