@@ -1,6 +1,11 @@
-# NodeJS App
+# ExpressJS App - User Management 
 
 ## Features 
+
+- Search Users
+- Add User
+- Update User
+- Delete User
 
 ### Run Application 
 Use Docker Compose's command: 
